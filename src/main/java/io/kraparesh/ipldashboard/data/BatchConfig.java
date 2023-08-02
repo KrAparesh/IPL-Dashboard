@@ -4,7 +4,8 @@ import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
+import org.springframework.batch.core.configuration.support.DefaultBatchConfiguration;
+// import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
@@ -24,8 +25,7 @@ import io.kraparesh.model.Match;
 
 
 @Configuration
-@EnableBatchProcessing
-public class BatchConfig {
+public class BatchConfig extends DefaultBatchConfiguration {
 
     private final String[] FIELD_NAMES = new String[] { "id", "city", "date", "player_of_match", "venue",
             "neutral_venue", "team1", "team2", "toss_winner", "toss_decision", "winner", "result", "result_margin",
@@ -55,7 +55,7 @@ public class BatchConfig {
     public JdbcBatchItemWriter<Match> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<Match>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO match (id, city, date, player_of_match, venue, team1, team2, toss_winner, toss_decision, match_winner, result, result_margin, umpire1, umpire2) "
+                .sql("INSERT INTO mstats (id, city) "
                         + " VALUES (:id, :city, :date, :playerOfMatch, :venue, :team1, :team2, :tossWinner, :tossDecision, :matchWinner, :result, :resultMargin, :umpire1, :umpire2)")
                 .dataSource(dataSource)
                 .build();

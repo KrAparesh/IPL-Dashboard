@@ -1,6 +1,7 @@
 package io.kraparesh.ipldashboard.data;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +21,11 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match> {
     match.setId(Long.parseLong(matchInput.getId()));
     match.setCity(matchInput.getCity());
     
-    match.setDate(LocalDate.parse(matchInput.getDate()));
+    // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
 
+    // match.setDate(LocalDate.parse(matchInput.getDate().formatted(formatter), formatter));
+
+    match.setDate(LocalDate.now());
     match.setPlayerOfMatch(matchInput.getPlayer_of_match());
 
     match.setVenue(matchInput.getVenue());
