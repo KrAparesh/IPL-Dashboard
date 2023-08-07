@@ -1,13 +1,11 @@
-package io.kraparesh.model;
+package io.kraparesh.ipldashboard.model;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
-@Table (name="mstats")
 public class Match {
 
     @Id
@@ -18,8 +16,14 @@ public class Match {
     private String venue;
     private String team1;
     private String team2;
-
-
+    private String tossWinner;
+    private String tossDecision;
+    private String matchWinner;
+    private String result;
+    private String resultMargin;
+    private String umpire1;
+    private String umpire2;
+    
     public long getId() {
         return id;
     }
@@ -104,11 +108,7 @@ public class Match {
     public void setUmpire2(String umpire2) {
         this.umpire2 = umpire2;
     }
-    private String tossWinner;
-    private String tossDecision;
-    private String matchWinner;
-    private String result;
-    private String resultMargin;
-    private String umpire1;
-    private String umpire2;
+
+    
+    
 }
