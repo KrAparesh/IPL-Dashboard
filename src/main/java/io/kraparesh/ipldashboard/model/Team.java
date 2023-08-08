@@ -1,9 +1,11 @@
 package io.kraparesh.ipldashboard.model;
 
+import java.util.*;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class Team {
@@ -14,6 +16,16 @@ public class Team {
     private String teamName;
     private long totalMatches;
     private long totalWins;
+
+    @Transient
+    private List<Match> matches;
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+    public void setMatches(List<Match> match) {
+        this.matches = match;
+    }
 
     public long getId() {
         return id;
@@ -49,6 +61,6 @@ public class Team {
         return "Team [teamName=" + teamName + ", totalMatches=" + totalMatches + ", totalWins=" + totalWins + "]";
     } 
 
-    
+    public Team() {}
     
 }
